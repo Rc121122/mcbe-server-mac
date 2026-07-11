@@ -12,12 +12,12 @@ Download Ubuntu Linux x86-64 version and extract the files to this folder, renam
 ### Installation
 1. Build image with dockerfile
     ```bash
-    docker build -t mcbe .
+    docker build --platform linux/amd64 -t mcbe:latest .
     ```
 
 2. Create a volume for persistent data
     ```bash
-    docker volume create mcbe_data
+    docker volume create mcbe-data
     ```
 
 3. Run the container
