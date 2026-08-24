@@ -1,4 +1,4 @@
 server/
 *.zip
-
 .DS_Store
+/backup/

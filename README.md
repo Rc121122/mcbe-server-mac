@@ -30,17 +30,14 @@ Download Ubuntu Linux x86-64 version and extract the files to this folder, renam
     mcbe:latest
     ```
 
-4. Copy the server files into the container
+4. Use *download.sh* to find a version, it will automatically download, extract and copy into volume and restart the container.
     ```bash
-    docker cp ./server/. mcbe:/mcbe/
+    ./download.sh
     ```
 
-5. restart the container
-    ```bash
-    docker restart mcbe
-    ```
+5. All set! The server should be running now, you can modify settings, import worlds and restart the container to apply changes. See [TIPS](#tips) for more details.
 
-TIPS:
+### TIPS:
 - Enter console
     ```bash
     docker attach mcbe
@@ -49,27 +46,12 @@ TIPS:
         ```op <player>``` give operator permissions to a player
         ```stop``` stop the server
         ```list``` list all players online
-- Import your world or update game version
-    0. backup your world folder
+        ```help <int:1~3>``` view more commands in help pages 1~3
+        Do not press Ctrl+C to exit the console, it will stop the server. Just simply close the terminal window.
+
+- Update server version
+    - Use *download.sh* to find a version, it will automatically download, extract and copy into volume and restart the container.
     ```bash
-    docker cp mcbe:/mcbe/worlds/<your world name> <your host destination folder>
+    ./download.sh
     ```
-    1. remove your container
-    ```bash
-    docker rm -f mcbe
-    ```
-    2. copy your world folder into /server/worlds/
-    3. rebuilt the image and run the container again
-    4. copy the new server files into container
-    ```bash
-    docker cp ./server/. mcbe:/mcbe/
-    ```
-    5. restart the container
-    ```bash
-    docker restart mcbe
-    ```
-- Modify some configuration files, don't need to rebuild, just copy the modified files into the container and restart it. (Warning: cp is partial overwrite, it will overwrite the old config files with same name)
-    ```bash
-    docker cp ./server/. mcbe:/mcbe/
-    docker restart mcbe
-    ```
+    WARNING: this script only perserve these items: allowlist.json, permissions.json, server.properties, /worlds. All other smaller config settings will be reset to default. Please backup your config files before updating. 
