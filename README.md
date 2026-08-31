@@ -55,3 +55,16 @@ Download Ubuntu Linux x86-64 version and extract the files to this folder, renam
     ./download.sh
     ```
     WARNING: this script only perserve these items: allowlist.json, permissions.json, server.properties, /worlds. All other smaller config settings will be reset to default. Please backup your config files before updating. 
+- import worlds from host directory to container volume
+    ```bash
+    docker cp <host_path> mcbe:/mcbe/worlds/
+    ```
+- test server connection from host machine, UDP 19132
+    - view port usage on host machine
+    ```bash
+    lsof -i :19132
+    ```
+    - view mapping
+    ```bash
+    docker port mcbe
+    ```
